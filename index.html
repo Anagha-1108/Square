@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <br><big><b>Move the Colored Square</b></big><br>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Square</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: blue;
+    }
+
+    #container {
+      position: relative;
+      width: 75vw;
+      height: 85vh;
+      border: 5px solid #131212;
+      background-color: rgb(125, 204, 235);
+    }
+
+    #square {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(225, 162, 240, 0.902);
+      transition: all 0.5s ease;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="square"></div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="moveSquare('top-left')">Top Left</button>
+    <button onclick="moveSquare('top-right')">Top Right</button>
+    <button onclick="moveSquare('bottom-left')">Bottom Left</button>
+    <button onclick="moveSquare('bottom-right')">Bottom Right</button>
+    <button onclick="moveSquare('center')">Center</button>
+    <button onclick="moveSquare('top-center')">Top Center</button>
+    <button onclick="moveSquare('bottom-center')">Bottom Center</button>
+  </div>
+
+  <script>
+    const square = document.getElementById('square');
+    const container = document.getElementById('container');
+
+    function moveSquare(position) {
+      const containerWidth = container.clientWidth;
+      const containerHeight = container.clientHeight;
+      const squareSize = 100;
+
+      let left = 0;
+      let top = 0;
+
+      switch (position) {
+        case 'top-left':
+          left = 0;
+          top = 0;
+          break;
+        case 'top-right':
+          left = containerWidth - squareSize;
+          top = 0;
+          break;
+        case 'bottom-left':
+          left = 0;
+          top = containerHeight - squareSize;
+          break;
+        case 'bottom-right':
+          left = containerWidth - squareSize;
+          top = containerHeight - squareSize;
+          break;
+        case 'center':
+          left = (containerWidth - squareSize) / 2;
+          top = (containerHeight - squareSize) / 2;
+          break;
+        case 'top-center':
+          left = (containerWidth - squareSize) / 2;
+          top = 0;
+          break;
+        case 'bottom-center':
+            left = (containerWidth - squareSize) / 2;
+            top = containerHeight - squareSize;
+            break;
+      }
+
+      square.style.left = `${left}px`;
+      square.style.top = `${top}px`;
+    }
+  </script>
+</body>
+</html>
